@@ -1,0 +1,36 @@
+customer_id,nome,email,cidade,estado,updated_at
+1,Ana Souza,ana@email.com,Sao Paulo,SP,2026-07-20
+2,Bruno Lima,bruno@email.com,Rio de Janeiro,RJ,2026-07-21
+3,Carla Mendes,carla@email.com,Belo Horizonte,MG,2026-07-22
+4,Diego Rocha,diego@email.com,Curitiba,PR,2026-07-23
+5,Elisa Martins,elisa@email.com,Recife,PE,2026-07-24
+6,Felipe Alves,felipe@email.com,Fortaleza,CE,2026-07-25
+7,Gabriela Nunes,gabriela@email.com,Salvador,BA,2026-07-26
+8,Henrique Melo,henrique@email.com,Goiania,GO,2026-07-27
+9,Isabela Costa,isabela@email.com,Campinas,SP,2026-07-28
+10,Joao Ribeiro,joao@email.com,Porto Alegre,RS,2026-07-29
+11,Karina Lopes,karina@email.com,Santos,SP,2026-07-30
+12,Lucas Freitas,lucas@email.com,Niteroi,RJ,2026-07-31
+13,Mariana Dias,mariana@email.com,Vitoria,ES,2026-08-01
+14,Nicolas Castro,nicolas@email.com,Manaus,AM,2026-08-01
+15,Olivia Ramos,olivia@email.com,Florianopolis,SC,2026-08-02
+16,Paulo Gomes,paulo@email.com,Brasilia,DF,2026-08-02
+17,Renata Moura,renata@email.com,Belem,PA,2026-08-03
+18,Rafael Pires,rafael@email.com,Sorocaba,SP,2026-08-03
+19,Sabrina Reis,sabrina@email.com,Londrina,PR,2026-08-04
+20,Tiago Cardoso,tiago@email.com,Joao Pessoa,PB,2026-08-04
+21,Vanessa Araujo,vanessa@email.com,Maceio,AL,2026-08-05
+22,Wesley Barros,wesley@email.com,Uberlandia,MG,2026-08-05
+23,Yasmin Ferreira,yasmin@email.com,Ribeirao Preto,SP,2026-08-06
+24,Arthur Neves,arthur@email.com,Natal,RN,2026-08-06
+25,Bianca Oliveira,bianca@email.com,Campo Grande,MS,2026-08-07
+26,Caio Moraes,caio@email.com,Joinville,SC,2026-08-07
+27,Daniela Martins,daniela@email.com,Teresina,PI,2026-08-08
+28,Eduardo Reis,eduardo@email.com,Sao Luis,MA,2026-08-08
+29,Fernanda Sales,fernanda@email.com,Aracaju,SE,2026-08-09
+30,Gustavo Pinto,gustavo@email.com,Cuiaba,MT,2026-08-09
+31,Helena Freire,helena@email.com,Sao Paulo,SP,2026-08-10
+32,Igor Mendes,igor@email.com,Rio de Janeiro,RJ,2026-08-10
+2,Bruno Lima,bruno.novo@email.com,Rio de Janeiro,RJ,2026-08-09
+7,Gabriela Nunes,gabriela.nova@email.com,Salvador,BA,2026-08-10
+15,Olivia Ramos,olivia.nova@email.com,Florianopolis,SC,2026-08-10

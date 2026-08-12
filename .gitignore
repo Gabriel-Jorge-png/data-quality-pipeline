@@ -1,0 +1,49 @@
+# Ambiente virtual
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# PySpark / Spark
+.sparkStaging/
+metastore_db/
+derby.log
+
+# Saídas geradas pelo pipeline
+data/trusted/
+data/quarantine/
+
+# Logs de execução
+logs/*.json
+
+# IDE
+.vscode/
+.idea/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+crash.log
+crash.*.log
+
+# Arquivos de variáveis que podem conter informações sensíveis
+*.tfvars
+*.tfvars.json
+
+# Credenciais e segredos
+.env
+.env.*
+*.pem
+*.key
+credentials*
