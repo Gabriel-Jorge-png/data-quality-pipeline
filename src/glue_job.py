@@ -1,3 +1,4 @@
+import argparse
 import time
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
@@ -32,6 +33,35 @@ from execution_log import registrar_execucao, definir_status
 
 inicio_execucao = time.time()
 
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    "--vendas-path",
+    default="data/vendas.csv"
+)
+
+parser.add_argument(
+    "--clientes-path",
+    default="data/clientes.csv"
+)
+
+parser.add_argument(
+    "--trusted-path",
+    default="data/trusted"
+)
+
+parser.add_argument(
+    "--quarantine-path",
+    default="data/quarantine"
+)
+
+parser.add_argument(
+    "--logs-path",
+    default="logs"
+)
+
+args, _ = parser.parse_known_args()
+
 # Cria a sessão Spark
 spark = (
     SparkSession.builder
@@ -44,14 +74,14 @@ vendas_df = (
     spark.read
     .option("header", True)
     .option("inferSchema", True)
-    .csv("data/vendas.csv")
+    .csv(args.vendas_path)
 )
 
 clientes_df = (
     spark.read
     .option("header", True)
     .option("inferSchema", True)
-    .csv("data/clientes.csv")
+    .csv(args.clientes_path)
 )
 
 # Quantidade de registros
@@ -134,11 +164,17 @@ vendas_duplicadas_df.show()
 # Grava a camada tratada e os registros inválidos em quarentena
 gravar_dados(
     vendas_tratadas_df,
-    vendas_quarentena_df
+    vendas_quarentena_df,
+    args.trusted_path,
+    args.quarantine_path,
 )
 
 # Relê os dados gravados para validar a saída real
-trusted_check_df, quarantine_check_df = ler_dados_gravados(spark)
+trusted_check_df, quarantine_check_df = ler_dados_gravados(
+    spark,
+    args.trusted_path,
+    args.quarantine_path,
+)
 
 # Valida se nenhum registro foi perdido ou criado
 validar_reconciliacao(
@@ -171,7 +207,8 @@ status_execucao = definir_status(metricas)
 
 registrar_execucao(
     metricas,
-    status=status_execucao
+    status=status_execucao,
+    logs_path=args.logs_path,
 )
 
 spark.stop()

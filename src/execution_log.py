@@ -2,10 +2,10 @@ import json
 import os
 from datetime import datetime
 
+import boto3
 
-def registrar_execucao(metricas, status):
-    os.makedirs("logs", exist_ok=True)
 
+def registrar_execucao(metricas, status, logs_path):
     agora = datetime.now()
 
     log_execucao = {
@@ -19,19 +19,49 @@ def registrar_execucao(metricas, status):
         "duracao_segundos": metricas["duracao_segundos"],
     }
 
-    nome_arquivo = agora.strftime(
-        "logs/execution_%Y%m%d_%H%M%S.json"
+    conteudo = json.dumps(
+        log_execucao,
+        indent=4,
+        ensure_ascii=False,
     )
 
-    with open(nome_arquivo, "w", encoding="utf-8") as arquivo:
-        json.dump(
-            log_execucao,
-            arquivo,
-            indent=4,
-            ensure_ascii=False
+    nome_arquivo = agora.strftime(
+        "execution_%Y%m%d_%H%M%S.json"
+    )
+
+    if logs_path.startswith("s3://"):
+        caminho = logs_path.replace("s3://", "", 1)
+        bucket, prefixo = caminho.split("/", 1)
+
+        chave = f"{prefixo.rstrip('/')}/{nome_arquivo}"
+
+        s3 = boto3.client("s3")
+
+        s3.put_object(
+            Bucket=bucket,
+            Key=chave,
+            Body=conteudo.encode("utf-8"),
+            ContentType="application/json",
         )
 
-    print(f"Log salvo em: {nome_arquivo}")
+        print(f"Log salvo em: s3://{bucket}/{chave}")
+
+    else:
+        os.makedirs(logs_path, exist_ok=True)
+
+        caminho_arquivo = os.path.join(
+            logs_path,
+            nome_arquivo,
+        )
+
+        with open(
+            caminho_arquivo,
+            "w",
+            encoding="utf-8",
+        ) as arquivo:
+            arquivo.write(conteudo)
+
+        print(f"Log salvo em: {caminho_arquivo}")
 
 def definir_status(metricas, limite_warning=5.0, limite_critico=30.0):
     taxa = metricas["taxa_rejeicao"]

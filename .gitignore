@@ -17,6 +17,7 @@ derby.log
 # Saídas geradas pelo pipeline
 data/trusted/
 data/quarantine/
+data/aws_quarantine/
 
 # Logs de execução
 logs/*.json
@@ -33,7 +34,6 @@ Thumbs.db
 .terraform/
 *.tfstate
 *.tfstate.*
-.terraform.lock.hcl
 crash.log
 crash.*.log
 
@@ -47,3 +47,17 @@ crash.*.log
 *.pem
 *.key
 credentials*
+
+# Pacotes gerados para o AWS Glue
+glue_dependencies.zip
+
+# Arquivos temporários de teste
+data/aws_trusted/
+data/vendas_teste.csv
+
+# Terraform
+*.tfplan
+
+# Python
+*.egg-info/
+.pytest_cache/
